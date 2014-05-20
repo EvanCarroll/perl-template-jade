@@ -1,6 +1,6 @@
 =head1 NAME
 
-Template::Jade  - Perl Template Engine
+Template::Jade::Internals - Perl Template Engine
 
 =head1 Format of parser
 

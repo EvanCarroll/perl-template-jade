@@ -4,7 +4,7 @@ use 5.006;
 use strict;
 use warnings FATAL => 'all';
 
-our $VERSION = '0.01_01';
+our $VERSION = '0.01_02';
 
 use Moose;
 use Template::Jade::Document;
@@ -24,7 +24,7 @@ sub render_file {
 		unless defined $filename;
 
 
-	my %tj_args = %{$opts};
+	my %tj_args = %{$opts//{}};
 	for my $key ( keys %tj_args ) {
 		delete $tj_args{$key} unless exists $valid_options{$key};
 	}
@@ -36,14 +36,14 @@ sub render_file {
 }
 
 sub render {
-	my ( $self, $source, $opts ) = @_;
+	my ( $source, $opts ) = @_;
 	
 	die "No source provided to render"
 		unless defined $source;
 
 	open(my $fh_input, '<', \$source) or die $!;
 	
-	my %tj_args = %{$opts};
+	my %tj_args = %{$opts//{}};
 	for my $key ( keys %tj_args ) {
 		delete $tj_args{$key} unless exists $valid_options{$key};
 	}
@@ -56,15 +56,14 @@ sub render {
 }
 
 sub compile {
-	my ( $self, $source, $opts ) = @_;
+	my ( $source, $opts ) = @_;
 	
-	die "No source provided to render"
+	die "No source provided to compile"
 		unless defined $source;
 	
 	open(my $fh_input, '<', \$source) or die $!;
 	
-	my %tj_args = %{$opts};
-	
+	my %tj_args = %{$opts//{}};
 	for my $key ( keys %tj_args ) {
 		delete $tj_args{$key} unless exists $valid_options{$key};
 	}

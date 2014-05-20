@@ -137,7 +137,6 @@ sub process {
 
 		## Wrap the sub
 		return sub {
-			warn 'good';
 			my $args = shift;
 			if ( defined $args->{meta} ) {
 				confess 'META is for me not, you'

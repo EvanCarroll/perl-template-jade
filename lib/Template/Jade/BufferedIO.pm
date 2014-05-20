@@ -43,6 +43,9 @@ has 'filename' => (
 		elsif ( -e "$value.jade" ) {
 			$set->( "$value.jade" );
 		}
+		else {
+			die "Can not open file $value for processing\n";
+		}
 	}
 );
 

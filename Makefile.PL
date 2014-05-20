@@ -18,11 +18,11 @@ requires 'Sub::Exporter';
 requires 'Text::Markdown::Discount';
 
 resources (
-   #homepage   => 'http://yourwebsitehere.com',
+   homepage   => 'http://jade-lang.com/',
    #IRC        => 'irc://irc.perl.org/#Template-Jade',
    license    => 'http://www.perlfoundation.org/artistic_license_2_0',
-   #repository => 'git://github.com/Evan Carroll/Template-Jade.git',
-   bugtracker => 'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Template-Jade',
+   repository => 'git://github.com/Evan Carroll/Template-Jade.git',
+   bugtracker => 'https://github.com/EvanCarroll/perl-template-jade/issues',
 );
 
 configure_requires (
