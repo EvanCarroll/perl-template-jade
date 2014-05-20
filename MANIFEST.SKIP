@@ -1,0 +1,9 @@
+\.git/.*
+/dev/
+\.swp
+\.skip
+\.bak
+.*test.*
+MANIFEST
+.gitignore
+Makefile$
