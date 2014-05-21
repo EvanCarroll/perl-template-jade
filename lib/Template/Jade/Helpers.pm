@@ -89,7 +89,7 @@ sub gen_open_tag ($) {
 	
 	if ( $2 ) {
 		for ( split /\s*,\s*/, $2 ) {
-			my ( $k, $v ) = split /\s*=\s*/, $_;
+			my ( $k, $v ) = split /\s*=\s*/, $_, 2;
 			$v =~ m/^(["']?) (\\?+.*)? \1/x;
 			$literal = $1;
 			push @{$attrs{lc $k}}, {

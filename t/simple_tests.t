@@ -44,7 +44,7 @@ EOF
 {
 
 	my $text = render(<<'EOF'
-	p.
+	p(initial-foo="bar=baz").
 		this
 		is
 		a
@@ -53,7 +53,7 @@ EOF
 );
 	$text =~ s/\s+//gm;
 
-	like( $text, qr'<p>thisisatest</p>', 'block comments' );
+	like( $text, qr'<pinitial-foo="bar=baz">thisisatest</p>', 'block comments' );
 
 }
 
