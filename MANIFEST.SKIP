@@ -7,3 +7,5 @@
 MANIFEST
 .gitignore
 Makefile$
+\.gz
+out\.html
