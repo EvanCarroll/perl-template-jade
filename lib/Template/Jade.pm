@@ -4,7 +4,7 @@ use 5.006;
 use strict;
 use warnings FATAL => 'all';
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 use Moose;
 use Template::Jade::Document;
@@ -81,10 +81,6 @@ __END__
 =head1 NAME
 
 Template::Jade - A port of Jade to Perl
-
-=head1 VERSION
-
-Version 0.01_01
 
 =head1 SYNOPSIS
 

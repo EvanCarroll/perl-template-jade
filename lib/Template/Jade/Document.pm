@@ -178,7 +178,7 @@ sub parse_tree {
 	state $atom_submarkup = qr/^ \s* (?<submarkup>:markdown) \s* $/x;
 
 	state $atom_html_with_attribute = qr/
-		(?<tag>  (?:[a-zA-Z-._#]*[a-zA-Z0-9]) (?:\((?:[^()]++|(?-1))*+\))? )
+		(?<tag>  (?:[a-zA-Z0-9_.#-]*[a-zA-Z0-9]) (?:\((?:[^()]++|(?-1))*+\))? )
 		(?<tagmodes> (?: [.=:] | != )? )
 	/x;
 

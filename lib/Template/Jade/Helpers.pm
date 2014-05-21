@@ -80,7 +80,7 @@ sub gen_open_tag ($) {
 	my $jade_tag = shift;
 	die "Undefined jade tag sent to gen_open_tag"
 		unless defined $jade_tag;
-	$jade_tag =~ m/^([a-zA-Z0-9-_.#]+) (?:\( ([^)]+ )\))?/x;
+	$jade_tag =~ m/^([a-zA-Z0-9_.#-]+) (?:\( ([^)]+ )\))?/x;
 
 	my $tag = lc $1;
 
