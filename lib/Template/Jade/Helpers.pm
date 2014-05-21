@@ -13,6 +13,14 @@ use Sub::Exporter -setup => {
 	)]
 };
 
+# source: http://www.w3.org/html/wg/drafts/html/master/syntax.html#void-elements
+my %SELF_CLOSING =  map { $_, undef } qw(
+	area      base  br     col     embed
+	hr        img   input  keygen  link
+	menuitem  meta  param  source  track
+	wbr
+);
+
 sub printf_inline_sub ($) {
 	my $escape = shift;
 	my $sub = 
@@ -56,7 +64,7 @@ sub gen_close_tag ($) {
 	if ( $1 =~ qr/^[.#]/ ) {
 		return '</div>';
 	}
-	else {
+	elsif ( not exists $SELF_CLOSING{$1} ) {
 		return "</" . lc $1 . '>';
 	}
 }
@@ -131,4 +139,4 @@ EOF
 
 use constant END_SUB => "\n};\n";
 
-1;
+;

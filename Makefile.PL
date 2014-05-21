@@ -13,6 +13,7 @@ perl_version 5.006;
 tests_recursive('t');
 
 requires 'Moose';
+requires 'DateTime';
 requires 'HTML::Escape';
 requires 'Sub::Exporter';
 requires 'Text::Markdown::Discount';

@@ -4,7 +4,7 @@ use 5.006;
 use strict;
 use warnings FATAL => 'all';
 
-our $VERSION = '0.01_02';
+our $VERSION = '0.01';
 
 use Moose;
 use Template::Jade::Document;
@@ -182,8 +182,6 @@ There are a few things not yet implimented.
 =item * Mixins -- compiled subroutines in the context of the parent.
 
 =item * Non :markdown filters
-
-=item * Self-closing blocks
 
 =item * Array-set attributes a(href=@classes)
 
