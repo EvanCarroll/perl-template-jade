@@ -375,7 +375,11 @@ sub parse_tree {
 		$self->_add_block($block, \@buffer);
 	}
 	elsif ( $tag ) {
-		printf( $fh_code qq{\n\tprint "\\n%s%s";}, $leftpad, quotemeta gen_close_tag($tag) );
+		# XXX this would be sexy if I cached tag information
+		my $end_tag = gen_close_tag( $tag );
+		if ( $end_tag ) {
+			printf( $fh_code qq{\n\tprint "\\n%s%s";}, $leftpad, quotemeta $end_tag );
+		}
 	}
 
 	return 1;

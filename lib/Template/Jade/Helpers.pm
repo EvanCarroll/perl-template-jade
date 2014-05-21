@@ -4,22 +4,29 @@ use warnings FATAL => 'all';
 
 use feature ':5.12';
 
+use HTML::Escape;
+
 use Sub::Exporter -setup => {
 	exports => [qw(
 		gen_doctype
 		printf_inline_sub
 		gen_open_tag          gen_close_tag
 		START_SUB  END_SUB
+		is_self_closing
 	)]
 };
 
-# source: http://www.w3.org/html/wg/drafts/html/master/syntax.html#void-elements
-my %SELF_CLOSING =  map { $_, undef } qw(
-	area      base  br     col     embed
-	hr        img   input  keygen  link
-	menuitem  meta  param  source  track
-	wbr
-);
+
+sub is_self_closing ($) {
+	# source: http://www.w3.org/html/wg/drafts/html/master/syntax.html#void-elements
+	state $SELF_CLOSING =  {map { $_, undef } qw(
+		area      base  br     col     embed
+		hr        img   input  keygen  link
+		menuitem  meta  param  source  track
+		wbr
+	)};
+	return exists $SELF_CLOSING->{$_[0]};
+}
 
 sub printf_inline_sub ($) {
 	my $escape = shift;
@@ -64,7 +71,7 @@ sub gen_close_tag ($) {
 	if ( $1 =~ qr/^[.#]/ ) {
 		return '</div>';
 	}
-	elsif ( not exists $SELF_CLOSING{$1} ) {
+	elsif ( ! is_self_closing($1) ) {
 		return "</" . lc $1 . '>';
 	}
 }
@@ -139,4 +146,4 @@ EOF
 
 use constant END_SUB => "\n};\n";
 
-;
+1;
