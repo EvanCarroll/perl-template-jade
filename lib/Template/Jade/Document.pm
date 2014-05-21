@@ -170,12 +170,12 @@ sub parse_tree {
 	my $input_line = $self->_readline;
 	return '' unless $input_line;
 
-	state $atom_include   = qr/^ \s* include \s+ (?<include>(\S+))/x;
+	state $atom_include   = qr/include \s+ (?<include>(\S+))/x;
 	state $atom_block     = qr/block \s+ (?<block>.+)/x;
 	state $atom_comment   = qr/(?<comment>[\/]{2}-?)   \s*   (?<text>.*)/x;
-	state $atom_jade_code = qr/^ \s* (?<jadecode>if|unless|each|else|case)/x;
-	state $atom_perl_expr = qr/^ \s* \- \s* (?<perlexpr>.+)/x;
-	state $atom_submarkup = qr/^ \s* (?<submarkup>:markdown) \s* $/x;
+	state $atom_jade_code = qr/(?<jadecode>if|unless|each|else|case)/x;
+	state $atom_perl_expr = qr/\- \s+ (?<perlexpr>.+) /x;
+	state $atom_submarkup = qr/(?<submarkup>:markdown) \s* $/x;
 
 	state $atom_html_with_attribute = qr/
 		(?<tag>  (?:[a-zA-Z0-9_.#-]*[a-zA-Z0-9]) (?:\((?:[^()]++|(?-1))*+\))? )
@@ -340,15 +340,17 @@ sub parse_tree {
 			# If it's not text put it back on the buffer and recurse
 			else {
 				$self->_buffer_push( $next );
-				$self->parse_tree();
+				$self->parse_tree;
 			}
 		}
-		# If we're done with the text-block
+
+		# If we're done with the block (deindention)
 		else {
 			$self->_buffer_push( $next );
 			$tagmodes = undef;
 			last;
 		}
+
 	}
 
 	#######################

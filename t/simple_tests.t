@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use lib 'lib';
 
-use Test::More tests => 3;
+use Test::More tests => 4;
 use Template::Jade qw(:all);
 use HTML::Escape;
 
@@ -54,6 +54,20 @@ EOF
 	$text =~ s/\s+//gm;
 
 	like( $text, qr'<pinitial-foo="bar=baz">thisisatest</p>', 'block comments' );
+
+}
+
+{
+
+	my $text = render(<<'EOF'
+	div.asdf
+		- print "foo";
+	h2 Add User
+EOF
+);
+	$text =~ s/\s+//gm;
+
+	like( $text, qr'<divclass="asdf">foo</div><h2>AddUser</h2>', 'perl expression works' );
 
 }
 
