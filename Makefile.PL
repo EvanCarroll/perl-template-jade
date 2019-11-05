@@ -22,7 +22,7 @@ resources (
    homepage   => 'http://jade-lang.com/',
    #IRC        => 'irc://irc.perl.org/#Template-Jade',
    license    => 'http://www.perlfoundation.org/artistic_license_2_0',
-   repository => 'git://github.com/Evan Carroll/Template-Jade.git',
+   repository => 'git://github.com/EvanCarroll/perl-template-jade.git',
    bugtracker => 'https://github.com/EvanCarroll/perl-template-jade/issues',
 );
 
